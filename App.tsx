@@ -5,6 +5,7 @@ import {
 } from '@expo-google-fonts/jost';
 import AppLoading from 'expo-app-loading';
 import React from 'react';
+import { Confirmation } from './src/pages/Confirmation';
 import { UserIdentification } from './src/pages/UserIdentification';
 import { Welcome } from './src/pages/welcome';
 
@@ -19,7 +20,8 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <UserIdentification/>
+    <Confirmation/>
+    // <UserIdentification/>
     // <Welcome/>
   );
 }
