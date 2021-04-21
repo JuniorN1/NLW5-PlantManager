@@ -6,7 +6,10 @@ import {
     Text,
     TextInput,
     View,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    TouchableNativeFeedback,
+    Platform,
+    Keyboard
 } from "react-native";
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
@@ -32,48 +35,58 @@ export function UserIdentification(){
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <KeyboardAvoidingView>
-                <View style={styles.content}>
-                    <View style={styles.form}>
-                        <View style={styles.header}>
-                            <Text style={styles.emoji}>
-                                {isFilled?'😄':'😃'}
-                            </Text>
-                            <Text
-                                style={styles.title}
-                            >
-                                Como podemos{'\n'}
-                                chamar você?
-                            </Text>     
-                        </View>              
-                        <TextInput 
-                            style={[
-                                styles.input,
-                               ( isFocused || isFilled) 
-                                && 
-                                {
-                                    borderColor:colors.green
+        <TouchableNativeFeedback 
+            onPress={
+                Keyboard.dismiss
+            }
+        >
+            <SafeAreaView style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === 'ios'?'padding':'height'}
+                >
+                
+                    <View style={styles.content}>
+                        <View style={styles.form}>
+                            <View style={styles.header}>
+                                <Text style={styles.emoji}>
+                                    {isFilled?'😄':'😃'}
+                                </Text>
+                                <Text
+                                    style={styles.title}
+                                >
+                                    Como podemos{'\n'}
+                                    chamar você?
+                                </Text>     
+                            </View>              
+                            <TextInput 
+                                style={[
+                                    styles.input,
+                                ( isFocused || isFilled) 
+                                    && 
+                                    {
+                                        borderColor:colors.green
+                                    }
+                                    
+                                ]}
+                                placeholder={
+                                    "Digite um Nome"
                                 }
-                                
-                            ]}
-                            placeholder={
-                                "Digite um Nome"
-                            }
-                            onBlur={handleInputBlur}
-                            onFocus={handleInputFocus}
-                            onChangeText={handlesInputChange}
-                        />
-                        <View style={styles.footer}>
-                            <Button 
-                                title={"Avançar"}
-                                onPress={handleSubmit}
+                                onBlur={handleInputBlur}
+                                onFocus={handleInputFocus}
+                                onChangeText={handlesInputChange}
                             />
+                            <View style={styles.footer}>
+                                <Button 
+                                    title={"Avançar"}
+                                    onPress={handleSubmit}
+                                />
+                            </View>
                         </View>
                     </View>
-                </View>
-            </KeyboardAvoidingView>
-        </SafeAreaView>
+
+                </KeyboardAvoidingView>
+            </SafeAreaView>
+        </TouchableNativeFeedback>
     )
 
 }
