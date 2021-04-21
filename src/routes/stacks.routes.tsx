@@ -34,3 +34,4 @@ const AppRoutes:React.FC=()=>(
 
     </Navigator>
 )
+export default AppRoutes;
