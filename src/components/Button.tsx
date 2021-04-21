@@ -26,10 +26,11 @@ export function Button({title, ...rest} : ButtonProps){
 const styles = StyleSheet.create({
     container:{
         backgroundColor:colors.green,
-        justifyContent:'center',
-        alignItems:'center',
         borderRadius:16,     
         height:56,
+        justifyContent:'center',
+        alignItems:'center',
+    
        
     },
     text:{
