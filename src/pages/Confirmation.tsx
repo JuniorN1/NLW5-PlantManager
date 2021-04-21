@@ -19,17 +19,18 @@ export function Confirmation(){
                     😄
                 </Text>
                 <Text style={styles.title}>
-
+                    Prontinho
                 </Text>
                 <Text style={styles.subTitle}>
                     Agora vamos começar a cuidar das suas
                     plantinha com muito cuidado.
                 </Text>
+                <View style={styles.footer}> 
+                    <Button title={'Confirma'}/>
+                </View>
             
             </View>
-            <View style={styles.footer}> 
-                <Button title={'s'}/>
-            </View>
+          
         </SafeAreaView>
     )
 }
@@ -42,11 +43,15 @@ const styles = StyleSheet.create({
 
     },
     content:{
-        
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        width:'100%',
+        padding:30
 
     },
     emoji:{
-        fontSize:32,
+        fontSize:78,
         
 
     },
@@ -63,12 +68,13 @@ const styles = StyleSheet.create({
         fontFamily:fonts.text,
         textAlign:'center',
         fontSize:17,
-        paddingVertical:20,
+        paddingVertical:10,
         color:colors.heading
 
     },
     footer:{
         width:'100%',
-        paddingHorizontal:75
+        paddingHorizontal:50,
+        marginTop:20
     }
 })
