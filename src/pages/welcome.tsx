@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, View, Text,Image, TouchableOpacity,StyleSheet } from 'react-native'
 import x from '../assets/watering.png'
+import { Button } from '../components/button';
 import colors from '../styles/colors';
 export function Welcome(){
     return(
@@ -15,8 +16,8 @@ export function Welcome(){
                 Não esqueça mais de regar suas plantas. 
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-    
-            </SafeAreaView>
+            <Button/>
+        </SafeAreaView>
     )
 }
 
