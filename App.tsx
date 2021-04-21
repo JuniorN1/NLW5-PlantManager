@@ -5,7 +5,7 @@ import {
 } from '@expo-google-fonts/jost';
 import AppLoading from 'expo-app-loading';
 import React from 'react';
-import AppRoutes from './src/routes/stacks.routes';
+import Routes from './src/routes';
 
 
 export default function App() {
@@ -18,6 +18,6 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <AppRoutes/>
+    <Routes/>
   );
 }
