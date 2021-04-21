@@ -9,6 +9,7 @@ import {
 import x from '../assets/watering.png';
 import { Feather } from '@expo/vector-icons'
 import colors from '../styles/colors';
+
 export function Welcome(){
     return(
         <SafeAreaView style={styles.container}>
@@ -55,8 +56,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:20,
         color:colors.heading,
     },
-    image:{
-       
+    image:{       
         height:Dimensions.get('window').width *0.7,
     },
     button:{
