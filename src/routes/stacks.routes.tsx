@@ -24,7 +24,7 @@ const AppRoutes:React.FC=()=>(
         />
          
         <Screen 
-            name="User"
+            name="UserIdentification"
             component={UserIdentification}
         />
           <Screen 
