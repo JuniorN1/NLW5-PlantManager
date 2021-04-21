@@ -2,9 +2,11 @@ import React from 'react';
 import { TouchableOpacity,Text ,StyleSheet,TouchableOpacityProps } from 'react-native';
 import colors from '../styles/colors';
 
+interface ButtonProps {
+    title:string;
+}
 
-
-export function Button(){
+export function Button({title} : ButtonProps){
 
     return (
         <TouchableOpacity 
@@ -12,7 +14,7 @@ export function Button(){
         style={styles.button}
     >
         <Text style={styles.buttonText}>
-           Avançar
+           {title}
         </Text>
     </TouchableOpacity>
 
