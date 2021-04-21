@@ -44,7 +44,6 @@ export function UserIdentification(){
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios'?'padding':'height'}
                 >
-                
                     <View style={styles.content}>
                         <View style={styles.form}>
                             <View style={styles.header}>
