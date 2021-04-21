@@ -1,16 +1,22 @@
 import React from 'react';
-import { 
-    View,
-    Text,
-    StyleSheet
-
-} from 'react-native'; 
+import {
+    StyleSheet, View,Text
+} from 'react-native';
+import { Header } from '../components/header';
 import colors from '../styles/colors';
 export function PlantSelect(){
     return(
+
         <View style={styles.container}>
-            <Text>Selecionar Plantas</Text>
+            <Header/>
+            <Text>
+                Em qual ambiente
+            </Text>
+            <Text>
+                você quer colocar sua planta?
+            </Text>
         </View>
+
     )
 }
 
