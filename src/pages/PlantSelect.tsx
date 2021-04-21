@@ -5,7 +5,9 @@ import {
     Text,
     FlatList
 } from 'react-native';
-import { EnviromentButton } from '../components/EnviromentButton';
+import { 
+    EnviromentButton 
+} from '../components/EnviromentButton';
 import { Header } from '../components/header';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
