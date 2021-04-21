@@ -2,7 +2,7 @@ import React from 'react';
 import { 
     StyleSheet,
     Text,
-    Image,
+   
     View
  } from 'react-native';
 import colors from '../styles/colors';
@@ -13,6 +13,7 @@ import {
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import fonts from '../styles/fonts';
 import { PlantSelect } from '../pages/PlantSelect';
+import {SvgFromUri} from 'react-native-svg';
 
 
 
@@ -30,12 +31,12 @@ export const PlantCardPrimary = ({data,...rest}:PlantsProps) =>{
             style={styles.container}
             {...rest}
         >
-            <Image 
-                source={
-                    {
-                        uri:data.photo
-                    }
+            <SvgFromUri 
+                uri={                    
+                    data.photo                    
                 }
+                width={70}
+                height={70}
             />
             <Text style={styles.text}>
                 {data.name}
