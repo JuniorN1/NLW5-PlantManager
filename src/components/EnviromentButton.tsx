@@ -12,10 +12,10 @@ import {
 import fonts from '../styles/fonts';
 
 
-  interface EnviromentButtonProps extends RectButtonProps{
-      title:string;
-      active?:boolean;
-  }
+interface EnviromentButtonProps extends RectButtonProps{
+    title:string;
+    active?:boolean;
+}
 
 export function EnviromentButton({
     title,

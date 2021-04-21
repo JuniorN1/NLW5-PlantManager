@@ -9,6 +9,7 @@ import {
     EnviromentButton 
 } from '../components/EnviromentButton';
 import { Header } from '../components/header';
+import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import api from '../services/api';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -16,8 +17,21 @@ interface EnviromentsProps{
     key:string;
     title:string;
 }
+interface PlantsProps{
+    id:number;
+    name: string;
+    about: string;
+    water_tips: string;
+    photo: string;
+    environments: string[],
+    frequency: {
+      times: number;
+      repeat_every: string;
+    }
+}
 export function PlantSelect(){
     const [enviroments,setEnviroments] = useState<EnviromentsProps[]>([]);
+    const [plants,setPlants] = useState<PlantsProps[]>([])
     useEffect(()=>{
         (async function fetchEnviroment() {
             const { data } = await api.get("plants_environments");
@@ -31,7 +45,15 @@ export function PlantSelect(){
         })()
   
 
-    },[])
+    },[]);
+    useEffect(()=>{
+        (async function fetchPlants() {
+            const { data } = await api.get("plants");
+            setPlants(data);
+        })()
+  
+
+    },[]);
     return(
 
         <View style={styles.container}>
@@ -55,6 +77,18 @@ export function PlantSelect(){
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={styles.enviromentList}
+                />
+            </View>
+            <View style={styles.plants}>
+                <FlatList
+                    data={plants}                
+                    renderItem={({item})=>(
+                        <PlantCardPrimary
+                            data={item}                        
+                        />
+                    )}                   
+                    showsHorizontalScrollIndicator={false}
+                   
                 />
             </View>
           
@@ -91,5 +125,10 @@ const styles = StyleSheet.create({
         marginLeft:32,
         marginVertical:32,
   
+    },
+    plants:{
+        flex:1,
+        paddingHorizontal:32,
+        justifyContent:'center'
     }
 })
