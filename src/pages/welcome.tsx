@@ -15,17 +15,8 @@ export function Welcome(){
                 Não esqueça mais de regar suas plantas. 
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-            <TouchableOpacity 
-                activeOpacity={0.7}
-                style={styles.button}
-            >
-                <Text style={styles.buttonText}>
-                   Avançar
-                </Text>
-            </TouchableOpacity>
-        </SafeAreaView>
-
-
+    
+            </SafeAreaView>
     )
 }
 
@@ -48,21 +39,10 @@ const styles = StyleSheet.create({
         paddingHorizontal:20,
         color:colors.heading,
     },
-    button:{
-        backgroundColor:colors.green,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:16,
-        marginBottom:10,
-        height:56,
-        width:56
-    },
+  
     image:{
         width:292,
         height:284,
     },
-    buttonText:{
-        color:colors.white,
-        fontSize:24
-    }
+
 })
