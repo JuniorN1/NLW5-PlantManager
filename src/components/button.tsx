@@ -15,7 +15,7 @@ export function Button({title, ...rest} : ButtonProps){
             {...rest}
         >
             <Text style={styles.buttonText}>
-            {title}
+                {title}
             </Text>
         </TouchableOpacity>
 
