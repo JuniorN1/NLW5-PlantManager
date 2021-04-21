@@ -30,6 +30,13 @@ export const PlantCardPrimary = ({data,...rest}:PlantsProps) =>{
             style={styles.container}
             {...rest}
         >
+            <Image 
+                source={
+                    {
+                        uri:data.photo
+                    }
+                }
+            />
             <Text style={styles.text}>
                 {data.name}
             </Text>

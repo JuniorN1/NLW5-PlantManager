@@ -87,8 +87,9 @@ export function PlantSelect(){
                             data={item}                        
                         />
                     )}                   
-                    showsHorizontalScrollIndicator={false}
-                   
+                    showsVerticalScrollIndicator={false}
+                    numColumns={2}
+                  
                 />
             </View>
           
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:colors.background
     },
+
     header:{
         paddingHorizontal:30
     },
@@ -130,5 +132,6 @@ const styles = StyleSheet.create({
         flex:1,
         paddingHorizontal:32,
         justifyContent:'center'
-    }
+    },
+
 })
