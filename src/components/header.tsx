@@ -7,7 +7,7 @@ import {
  } from 'react-native';
 import colors from '../styles/colors';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import userImg from '../assets/watering.png';
+import userImg from '../assets/user.png';
 import fonts from '../styles/fonts';
 
 export function Header(){
@@ -24,7 +24,7 @@ export function Header(){
                 <Text
                     style={styles.userName}
                 >
-                    Rodrigo
+                    Júnior
                 </Text>
             </View>
             <Image source={userImg} style={styles.image}/>
