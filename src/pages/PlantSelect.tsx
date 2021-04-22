@@ -3,12 +3,14 @@ import {
     StyleSheet,
     View,
     Text,
-    FlatList
+    FlatList,
+    ActivityIndicator
 } from 'react-native';
 import { 
     EnviromentButton 
 } from '../components/EnviromentButton';
 import { Header } from '../components/header';
+import { Load } from '../components/Load';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
 import api from '../services/api';
 import colors from '../styles/colors';
@@ -34,6 +36,10 @@ export function PlantSelect(){
     const [plants,setPlants] = useState<PlantsProps[]>([]);
     const [filteredPlants,setFilteredPlants] = useState<PlantsProps[]>([]);
     const [enviromentsSelected,setEnviromentsSelected] = useState('all');
+    const [loading,setLoading] = useState(true);
+    const [page,setPage] = useState(1);
+    const [loadingMore,setLoadingMore] = useState(false);
+    const [loadingAll,setLoadingAll] = useState(false);
     function handlesEnviromentsSelected(enviroments:string){
         setEnviromentsSelected(enviroments);
         if(enviroments === 'all'){
@@ -48,6 +54,17 @@ export function PlantSelect(){
     
         setFilteredPlants(filtered)
     }
+    function handleFetchMore(distance:number){
+        
+        if(distance<1){
+            return;
+        }
+        setLoadingMore(true);
+        setPage(oldValue=>oldValue+1);
+  
+      
+    }
+   
     useEffect(()=>{
         (async function fetchEnviroment() {
             const { data } = await api
@@ -63,16 +80,29 @@ export function PlantSelect(){
   
 
     },[]);
-    useEffect(()=>{
+    useEffect(()=>{    
         (async function fetchPlants() {
             const { data } = await api
-            .get("plants?_sort=name&_order=asc");
-            setPlants(data);
+            .get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
+            if(!data){
+                return setLoading(true)
+            }
+            if(page>1){
+                setPlants(oldValue=>[...oldValue,...data])
+                setFilteredPlants(oldValue=>[...oldValue,...data])
+            }else{
+                setPlants(data);
+                setFilteredPlants(data);
+            }
+            setLoading(false);
+            setLoadingMore(false);   
            
         })()
   
-
-    },[]);
+       
+    },[page]);
+    if(loading)
+        return <Load/>
     return(
 
         <View style={styles.container}>
@@ -110,6 +140,20 @@ export function PlantSelect(){
                     )}                   
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
+                    onEndReachedThreshold={0.1}
+                    onEndReached={({distanceFromEnd}) =>
+                        handleFetchMore(distanceFromEnd)}
+                    ListFooterComponent={
+                        loadingMore ?
+                        (
+                            <ActivityIndicator 
+                                color={colors.green}
+                            />
+                        ):
+                        (
+                            <></>
+                        )
+                    }
                   
                 />
             </View>
