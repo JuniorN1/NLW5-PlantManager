@@ -48,11 +48,28 @@ export async function savePlants(plant:PlantsProps):Promise<void> {
     }
 }
 
-export async function loadPlants():Promise<StoragePlantProps> {
+export async function loadPlants():Promise<PlantsProps[]> {
     try{
         const data = await AsyncStorage.getItem('@plantmanager:plants');
         const plants = data? (JSON.parse(data) as StoragePlantProps):{};
-        return plants;
+        
+        const plantSorted = Object
+        .keys(plants)
+        .map((plant)=>{
+            return{
+                ...plants[plant].data,
+                hour:format(new Date(plants[plant].data.dateTimeNotification),'HH:MM')
+            }
+        })
+        .sort((a , b) => 
+            Math.floor(
+                new Date(a.dateTimeNotification).getTime()/1000
+                - Math.floor(
+                    new Date(b.dateTimeNotification).getTime()/1000
+                )
+            )
+        )
+        return plantSorted;
     }catch(err){
         throw new Error(err);
     }
