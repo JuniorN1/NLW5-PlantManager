@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
-    View,
-    Text,
-    FlatList,
-    ActivityIndicator
+    ActivityIndicator, FlatList, StyleSheet,
+
+    Text, View
 } from 'react-native';
-import { 
-    EnviromentButton 
+import {
+    EnviromentButton
 } from '../components/EnviromentButton';
 import { Header } from '../components/header';
 import { Load } from '../components/Load';
@@ -39,7 +37,7 @@ export function PlantSelect(){
     const [loading,setLoading] = useState(true);
     const [page,setPage] = useState(1);
     const [loadingMore,setLoadingMore] = useState(false);
-    const [loadingAll,setLoadingAll] = useState(false);
+
     function handlesEnviromentsSelected(enviroments:string){
         setEnviromentsSelected(enviroments);
         if(enviroments === 'all'){
@@ -117,7 +115,9 @@ export function PlantSelect(){
             </View>
             <View>
                 <FlatList
-                    data={enviroments}                
+
+                    data={enviroments}   
+                    keyExtractor={(item)=>String(item.key)}             
                     renderItem={({item})=>(
                         <EnviromentButton                                         
                             title={item.title}    
@@ -132,7 +132,8 @@ export function PlantSelect(){
             </View>
             <View style={styles.plants}>
                 <FlatList
-                    data={filteredPlants}                
+                    data={filteredPlants}    
+                    keyExtractor={(item)=>String(item.id)}
                     renderItem={({item})=>(
                         <PlantCardPrimary
                             data={item}                        
