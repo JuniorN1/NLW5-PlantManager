@@ -11,25 +11,13 @@ import {
 import { Header } from '../components/header';
 import { Load } from '../components/Load';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
+import { EnviromentsProps, PlantsProps } from '../libs/storage';
 import api from '../services/api';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
-interface EnviromentsProps{
-    key:string;
-    title:string;
-}
-interface PlantsProps{
-    id:number;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: string[],
-    frequency: {
-      times: number;
-      repeat_every: string;
-    }
-}
+
+
+
 export function PlantSelect(){
     const navigation = useNavigation();
     const [enviroments,setEnviroments] = useState<EnviromentsProps[]>([]);
