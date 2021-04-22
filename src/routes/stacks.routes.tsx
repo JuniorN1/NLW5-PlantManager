@@ -43,7 +43,7 @@ const AppRoutes:React.FC=()=>(
             component={PlantSave}
         />
          <Screen 
-            name="MyPlants"
+            name="MyPlant"
             component={MyPlants}
         />
 

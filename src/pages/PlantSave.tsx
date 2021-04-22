@@ -1,5 +1,5 @@
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
-import { useRoute } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import { format, isBefore } from 'date-fns';
 import React, { useState } from 'react';
 import {
@@ -20,6 +20,7 @@ interface Plants{
 }
 export function PlantSave(){
     const route = useRoute();
+    const navigation = useNavigation();
     const {plant}    = route.params as Plants;
     const [selectedDateTime,setSelectedDateTime] = useState(new Date)
     const [showDatePicker,setShowDatePicker]     =useState(Platform.OS ==='ios')
@@ -45,6 +46,13 @@ export function PlantSave(){
                 ...plant,
                 dateTimeNotification:selectedDateTime
             });
+            navigation.navigate("Confirmation",{
+                title:'Tudo Certo',
+                subtitle:'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado.',
+                buttonTitle:'Muito Obrigado :D',
+                icon:'hug',
+                nextScreen:'MyPlant'
+            })
 
         }catch{
             Alert.alert('Não foi possivel salvar 😭!')
