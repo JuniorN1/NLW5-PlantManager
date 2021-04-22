@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import {
     ActivityIndicator, FlatList, StyleSheet,
@@ -30,6 +31,7 @@ interface PlantsProps{
     }
 }
 export function PlantSelect(){
+    const navigation = useNavigation();
     const [enviroments,setEnviroments] = useState<EnviromentsProps[]>([]);
     const [plants,setPlants] = useState<PlantsProps[]>([]);
     const [filteredPlants,setFilteredPlants] = useState<PlantsProps[]>([]);
@@ -52,15 +54,16 @@ export function PlantSelect(){
     
         setFilteredPlants(filtered)
     }
-    function handleFetchMore(distance:number){
-        
+    function handleFetchMore(distance:number){        
         if(distance<1){
             return;
         }
         setLoadingMore(true);
-        setPage(oldValue=>oldValue+1);
-  
+        setPage(oldValue=>oldValue+1);  
       
+    }
+    function handlePlantSelect(plant:PlantsProps){
+        navigation.navigate("PlantSave",{plant})
     }
    
     useEffect(()=>{
@@ -136,7 +139,8 @@ export function PlantSelect(){
                     keyExtractor={(item)=>String(item.id)}
                     renderItem={({item})=>(
                         <PlantCardPrimary
-                            data={item}                        
+                            data={item}    
+                            onPress={()=>handlePlantSelect(item)}                    
                         />
                     )}                   
                     showsVerticalScrollIndicator={false}
