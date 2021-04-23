@@ -3,10 +3,10 @@ import React from "react";
 import { Confirmation } from "../pages/Confirmation";
 import { MyPlants } from '../pages/MyPlants';
 import { PlantSave } from '../pages/PlantSave';
-import { PlantSelect } from "../pages/PlantSelect";
 import { UserIdentification } from "../pages/UserIdentification";
 import { Welcome } from "../pages/welcome";
 import colors from '../styles/colors';
+import AuthRoute from './tab.routes';
 
 const {Navigator,Screen} = createStackNavigator();
 
@@ -36,7 +36,7 @@ const AppRoutes:React.FC=()=>(
         />
         <Screen 
             name="PlantSelect"
-            component={PlantSelect}
+            component={AuthRoute}
         />
         <Screen 
             name="PlantSave"
@@ -44,7 +44,7 @@ const AppRoutes:React.FC=()=>(
         />
          <Screen 
             name="MyPlant"
-            component={MyPlants}
+            component={AuthRoute}
         />
 
     </Navigator>
