@@ -1,19 +1,19 @@
 import React from 'react';
-import { 
+import {
     StyleSheet,
     Text,
-   
+    Animated,
     View
- } from 'react-native';
-import colors from '../styles/colors';
-import { 
+} from 'react-native';
+import {
     RectButton,
-    RectButtonProps
- } from 'react-native-gesture-handler';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+    RectButtonProps,
+    Swipeable
+} from 'react-native-gesture-handler';
+import { SvgFromUri } from 'react-native-svg';
+import colors from '../styles/colors';
 import fonts from '../styles/fonts';
-import { PlantSelect } from '../pages/PlantSelect';
-import {SvgFromUri} from 'react-native-svg';
+import { Feather } from '@expo/vector-icons'
 
 
 
@@ -24,41 +24,63 @@ interface PlantsProps extends RectButtonProps{
         hour:string;
 
     };
+    handleRemove:()=>void;
 
 }
 
-export const PlantCardSecundary = ({data,...rest}:PlantsProps) =>{
+export const PlantCardSecundary = ({data,handleRemove,...rest}:PlantsProps) =>{
     return(
-        <RectButton 
-            style={styles.container}
-            {...rest}
-        >
-            <SvgFromUri 
-                uri={                    
-                    data.photo                    
-                }
-                width={50}
-                height={50}
-            />
-            <Text style={styles.title}>
-                {data.name}
-            </Text>
-            <View
-                style={styles.details}
-            >
-                <Text
-                    style={styles.timeLabel}
-                >
-                    Regar ás
-                </Text>
-                <Text
-                    style={styles.time}
-                >
-                    {data.hour}
-                </Text>
-            </View>
+        <Swipeable
+            overshootRight={false}
+            renderRightActions={()=>(
+                <Animated.View>
+                        <View>
+                            <RectButton
+                                style={styles.buttomRemove}
+                                onPress={handleRemove}
+                            >
+                                <Feather
+                                    name="trash"
+                                    size={32}
+                                    color={colors.white}
+                                />
+                            </RectButton>
+                        </View>
+                </Animated.View>
 
-        </RectButton>
+            )}
+        >
+            <RectButton 
+                style={styles.container}
+                {...rest}
+            >
+                <SvgFromUri 
+                    uri={                    
+                        data.photo                    
+                    }
+                    width={50}
+                    height={50}
+                />
+                <Text style={styles.title}>
+                    {data.name}
+                </Text>
+                <View
+                    style={styles.details}
+                >
+                    <Text
+                        style={styles.timeLabel}
+                    >
+                        Regar ás
+                    </Text>
+                    <Text
+                        style={styles.time}
+                    >
+                        {data.hour}
+                    </Text>
+                </View>
+
+            </RectButton>
+        </Swipeable>
     )
 }
 
@@ -95,6 +117,19 @@ const styles = StyleSheet.create({
         marginTop:5,
         fontSize:16,
         fontFamily:fonts.heading,
+    },
+    buttomRemove:{
+
+        width:100,
+        height:85,
+        backgroundColor:colors.red,
+        marginTop:15,
+        borderRadius:20,
+        justifyContent:'center',
+        alignItems:'center',
+        position:'relative',
+        right:20,
+        paddingLeft:15
     }
 
 

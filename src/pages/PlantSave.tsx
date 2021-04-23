@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/core';
 import { format, isBefore } from 'date-fns';
 import React, { useState } from 'react';
 import {
-    Alert, Image, Platform, StyleSheet,
+    Alert, Image, Platform, ScrollView, StyleSheet,
     Text,
     View
 } from 'react-native';
@@ -60,72 +60,76 @@ export function PlantSave(){
     }
     
     return(
-        <View style={styles.container}>
-            <View style={styles.plantInfo}>
-                <SvgFromUri
-                    uri={plant.photo}
-                    height={150}
-                    width={150}
-                />
-                <Text style={styles.plantName}>
-                   {plant.name}
-                </Text>
-                <Text style={styles.plantAbout}>
-                   {plant.about}
-                </Text>
-            </View>
-            <View style={styles.controller}>
-                <View style={styles.tipContainer}>
-                    <Image
-                        source={waterdrop}
-                        style={styles.tipImage}
+        <ScrollView
+           showsVerticalScrollIndicator={false}
+        >
+            <View style={styles.container}>
+                <View style={styles.plantInfo}>
+                    <SvgFromUri
+                        uri={plant.photo}
+                        height={150}
+                        width={150}
                     />
-                    <Text
-                        style={styles.tipText}
-                    >
-                        {plant.water_tips}
+                    <Text style={styles.plantName}>
+                    {plant.name}
+                    </Text>
+                    <Text style={styles.plantAbout}>
+                    {plant.about}
                     </Text>
                 </View>
-                <Text
-                    style={styles.alertLabel}
-                >
-                    Escolha o melhor horário para ser lembrado:
-                </Text>
-                {
-                    showDatePicker &&
-                    (
-                        <DateTimePicker 
-                            value={selectedDateTime}
-                            mode="time"
-                            display="spinner"
-                            onChange={handleChangeTime}
+                <View style={styles.controller}>
+                    <View style={styles.tipContainer}>
+                        <Image
+                            source={waterdrop}
+                            style={styles.tipImage}
                         />
-                    )
-                }
-                {
-                    Platform.OS === 'android' &&(
-                        <TouchableOpacity
-                            style={styles.dateTimePickerButton}
-                            onPress={
-                                handlesOpenDateTimePickerForAndroid
-                            }
+                        <Text
+                            style={styles.tipText}
                         >
-                            <Text
-                                style={styles.datePickerText}
+                            {plant.water_tips}
+                        </Text>
+                    </View>
+                    <Text
+                        style={styles.alertLabel}
+                    >
+                        Escolha o melhor horário para ser lembrado:
+                    </Text>
+                    {
+                        showDatePicker &&
+                        (
+                            <DateTimePicker 
+                                value={selectedDateTime}
+                                mode="time"
+                                display="spinner"
+                                onChange={handleChangeTime}
+                            />
+                        )
+                    }
+                    {
+                        Platform.OS === 'android' &&(
+                            <TouchableOpacity
+                                style={styles.dateTimePickerButton}
+                                onPress={
+                                    handlesOpenDateTimePickerForAndroid
+                                }
                             >
-                                {`Mudar ${format(selectedDateTime,'HH:MM')}`}
-                            </Text>
-                        </TouchableOpacity>
-                    )
-                }
-       
-                <Button 
-                    title="Cadastrar planta"
-                    onPress={handleSave}
-                />
+                                <Text
+                                    style={styles.datePickerText}
+                                >
+                                    {`Mudar ${format(selectedDateTime,'HH:MM')}`}
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    }
+        
+                    <Button 
+                        title="Cadastrar planta"
+                        onPress={handleSave}
+                    />
 
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
