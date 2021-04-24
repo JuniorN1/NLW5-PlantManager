@@ -18,7 +18,7 @@ interface Params{
 }
 const emojis = {
     hug:'🤗',
-    smile:'  😄'
+    smile:'😄'
 
 }
 export function Confirmation(){
@@ -40,7 +40,7 @@ export function Confirmation(){
             <View style={styles.content}>
                 <Text style={styles.emoji}>
                     {
-                        emojis[icon]
+                    emojis[icon]
                     }
                 </Text>
                 <Text style={styles.title}>
@@ -65,8 +65,7 @@ export function Confirmation(){
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        alignItems:'center',
-        justifyContent:'space-around'
+   
 
     },
     content:{
@@ -74,7 +73,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         width:'100%',
-        padding:30
+        padding:30,
+
 
     },
     emoji:{

@@ -1,6 +1,7 @@
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/core';
-import React from 'react';
+import * as Notifications from 'expo-notifications';
+import React, { useEffect } from 'react';
 import {
     Dimensions, Image,
     SafeAreaView,
@@ -17,6 +18,7 @@ export function Welcome(){
     function handleStart(){
         navigation.navigate("UserIdentification");
     }
+
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
@@ -52,7 +54,6 @@ export function Welcome(){
 const styles = StyleSheet.create({
     container:{
         flex:1,
-    
     },
     wrapper:{
         flex:1,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:28,
-        fontWeight:'bold',
+   
         textAlign:'center',
         color:colors.heading,
         marginTop:38,

@@ -54,14 +54,24 @@ export function MyPlants(){
     useEffect(()=>{
         (async () => {
             const plantsStoraged = await loadPlants();
-            const nextTime = formatDistance(
-                new Date(plantsStoraged[0].dateTimeNotification).getTime(),
-                new Date(),
-                {locale: pt}
-            )
-            setNextWaterd(
-                `Não esqueça de regar a ${plantsStoraged[0].name} á ${nextTime} horas.`
-            )
+           
+            if(plantsStoraged.length >0){
+                const startTime = new Date();
+                const endTime = new Date(plantsStoraged[0].dateTimeNotification);
+                const difference = endTime.getTime() - startTime.getTime(); // This will give difference in milliseconds
+                const nextTime = Math.round(difference / 60000);
+        
+                setNextWaterd(
+                    `Não esqueça de regar a ${plantsStoraged[0].name} á ${
+                        nextTime<0 ? (`1 di e ${(1*nextTime)}`):(`${nextTime} minutos`)
+                    }.`
+                )
+            }else{
+                setNextWaterd(
+                  'Vocé ainda nao tem plantas selecionadas!'
+                )
+
+            }
              setMyPlants(plantsStoraged);
             setLoading(false)
 
@@ -122,8 +132,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'space-between',
-        paddingHorizontal:30,
-        paddingTop:50,
+        paddingHorizontal:30,    
         backgroundColor:colors.background
 
     },

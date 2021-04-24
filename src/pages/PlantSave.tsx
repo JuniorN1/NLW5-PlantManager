@@ -54,8 +54,9 @@ export function PlantSave(){
                 nextScreen:'MyPlant'
             })
 
-        }catch{
-            Alert.alert('Não foi possivel salvar 😭!')
+        }catch(err){
+            console.log(err)
+            Alert.alert('Não foi possivel salvar 😭!');
         }
     }
     
@@ -116,7 +117,7 @@ export function PlantSave(){
                                 <Text
                                     style={styles.datePickerText}
                                 >
-                                    {`Mudar ${format(selectedDateTime,'HH:MM')}`}
+                                    {`Mudar ${format(selectedDateTime,'HH:mm')}`}
                                 </Text>
                             </TouchableOpacity>
                         )

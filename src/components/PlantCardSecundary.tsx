@@ -14,6 +14,7 @@ import { SvgFromUri } from 'react-native-svg';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { Feather } from '@expo/vector-icons'
+import format from 'date-fns/format';
 
 
 
@@ -22,6 +23,7 @@ interface PlantsProps extends RectButtonProps{
         name:string;
         photo:string;
         hour:string;
+        dateTimeNotification:Date;
 
     };
     handleRemove:()=>void;
@@ -75,7 +77,7 @@ export const PlantCardSecundary = ({data,handleRemove,...rest}:PlantsProps) =>{
                     <Text
                         style={styles.time}
                     >
-                        {data.hour}
+                      {format(new Date(data.dateTimeNotification),'HH:mm')}
                     </Text>
                 </View>
 
