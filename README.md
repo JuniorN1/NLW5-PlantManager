@@ -16,12 +16,12 @@
     Nessa Edição da Next Level Week Contruimos uma aplicação mobile para gerenciamento de plantas, 
     uma agenda pessoal para quem cuida de plantas!
     ultilizamos:
-      notificações , aprendendo a usalas de maneira local, usando a lib do expo local notification  
-      async storange, para persistir dados localmente no dispositivo     
-      animações do react-native e outras novas libs do react-native-gesture-handler para fazer o mesmo
-      animações do lottier para loading dinamicos 
-      imagens svgs com a lib react-native-svg 
-      servidor fake para simular consultas reais a api 
+      notificações , aprendendo a usalas de maneira local, usando a lib do expo local notification,
+      async storange, para persistir dados localmente no dispositivo,     
+      animações do react-native e outras novas libs do react-native-gesture-handler para fazer o mesmo,
+      animações do lottier para loading dinamicos,
+      imagens svgs com a lib react-native-svg,
+      servidor fake para simular consultas reais a api. 
     
    
     
