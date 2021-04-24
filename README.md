@@ -54,8 +54,8 @@
       
    ###### apois isso basta executar os seguintes comandos em terminais separados  para rodar o servidor fake 
         
-          npm json-server ./src/services/server.json --host 10.0.1.4 --port 3333 --delay 700
-          yarn json-server ./src/services/server.json --host 10.0.1.4 --port 3333 --delay 700
+          npm json-server ./src/services/server.json --host localhost --port 3333 --delay 700
+          yarn json-server ./src/services/server.json --host localhost --port 3333 --delay 700
     
    ###### para rodar o projeto
        
